@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>Digital Clock</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .page{
+            
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom right, #3399ff 0%, #99ff99 104%);
+
+        }
+        .box{
+            background: linear-gradient(to bottom right, #3399ff 0%, #99ff99 104%);
+        }
+        .screen{
+          display: flex;
+          justify-content: center;
+           align-items: center;
+           background: linear-gradient(to right, #33ccff 0%, #ff99cc 100%);
+           height: 40px;
+           font-size: 24px;
+           font-family: 'Orbitron', sans-serif;
+        }
+        .btncon{
+          display: flex;
+          justify-content: center;
+          
+        }
+        .btn{
+          border-radius: 20%;
+          padding: 6px 10px;
+          font-size: 15px;
+          margin: 3px;
+          
+          
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="page"> 
+        <div class="box">
+        <div class="screen">
+        <div class="hours1" onclick="click"> 00 :</div>
+        <div class="hours2" onclick="click"> 00 :</div>
+        <div class="hours3" onclick="click"> 00 </div>
+      </div>
+     <div class="btncon"> 
+       <button id = "btn1" class="btn">start</button>
+      <button id = "btn2"class="btn">stop</button>
+      <button id = "btn3"class="btn">reset</button>
+        </div>
+    </div></div>
+   
+    
+</body>
+<script>
+    const min = document.querySelector('.hours1');
+    const sec = document.querySelector('.hours2');
+    const persec = document.querySelector('.hours3');
+    const start = document.querySelector('#btn1');
+    const sto = document.querySelector('#btn2');
+    const reset = document.querySelector('#btn3');
+    let m = 0;
+    let s = 0;
+    let ps =0;
+    let timeref ;
+    const time = () => {
+          timeref =  setInterval(() => {
+          if (ps <= 99) {
+            persec.innerHTML =`${ps}`;
+            ps++;
+          }
+            else{
+              ps = 0;
+          }
+         
+        }, 100);
+          timere = setInterval(() => {
+          if (s <= 59) {
+            sec.innerHTML =`${s}`;
+            s++;
+          }
+            else{
+              s = 0;
+          }
+         
+        }, 10000);
+          timer = setInterval(() => {
+          if (m <= 59) {
+            min.innerHTML =`${m}`;
+            m++;
+          }
+            else{
+              m = 0;
+          }
+         
+        }, 10000000);
+        
+    }
+     const rps = () => {
+       ps = 0;
+       s =0;
+       m =0;
+       persec.innerHTML = `${ps}0 ` 
+       sec.innerHTML = `${s}0 :`
+       min.innerHTML = `${m}0 :`
+       clearInterval(timeref);
+        clearInterval(timere);
+        clearInterval(timer);
+     }
+    
+    const tim = () => {
+        clearInterval(timeref);
+        clearInterval(timere);
+        clearInterval(timer);
+    }
+      reset.addEventListener('click', rps );
+     sto.addEventListener('click', tim);
+     start.addEventListener('click',time);
+    
+    
+</script>
+</html>
