@@ -44,22 +44,28 @@
           
           
         }
+        .h1{
+          font-size: 32px;
+          background-color: #08f7f3;
+        }
+        
         
 
     </style>
 </head>
 <body>
     <div class="page"> 
-        <div class="box">
+      <div class="box">
+          <div class="h1">Press any button ⏲️</div>
         <div class="screen">
-        <div class="hours1" onclick="click"> 00 :</div>
-        <div class="hours2" onclick="click"> 00 :</div>
-        <div class="hours3" onclick="click"> 00 </div>
+        <div class="hours1" > 00 :</div>
+        <div class="hours2" > 00 :</div>
+        <div class="hours3" > 00 </div>
       </div>
      <div class="btncon"> 
-       <button id = "btn1" class="btn">start</button>
-      <button id = "btn2"class="btn">stop</button>
-      <button id = "btn3"class="btn">reset</button>
+       <button id = "btn1" onclick="click1" class="btn">start</button>
+      <button id = "btn2"  onclick="click2" class="btn">stop</button>
+      <button id = "btn3"  onclick="click3" class="btn">reset</button>
         </div>
     </div></div>
    
@@ -72,6 +78,7 @@
     const start = document.querySelector('#btn1');
     const sto = document.querySelector('#btn2');
     const reset = document.querySelector('#btn3');
+    const display = document.querySelector('.h1');
     let m = 0;
     let s = 0;
     let ps =0;
@@ -79,6 +86,8 @@
     const time = () => {
           timeref =  setInterval(() => {
           if (ps <= 99) {
+       document.querySelector('.h1').innerHTML=`Time is  start... 🏃`;
+
             persec.innerHTML =`${ps}`;
             ps++;
           }
@@ -113,6 +122,9 @@
        ps = 0;
        s =0;
        m =0;
+       document.querySelector('.h1').innerHTML=`Press any button... 🧍`;
+
+
        persec.innerHTML = `${ps}0 ` 
        sec.innerHTML = `${s}0 :`
        min.innerHTML = `${m}0 :`
@@ -122,6 +134,7 @@
      }
     
     const tim = () => {
+       document.querySelector('.h1').innerHTML=`Time is stop... 🗽`;
         clearInterval(timeref);
         clearInterval(timere);
         clearInterval(timer);
