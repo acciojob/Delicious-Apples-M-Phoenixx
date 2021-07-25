@@ -84,6 +84,7 @@
     let ps =0;
     let timeref ;
     const time = () => {
+         if (!timeref) {
           timeref =  setInterval(() => {
           if (ps <= 99) {
        document.querySelector('.h1').innerHTML=`Time is  start... 🏃`;
@@ -117,6 +118,7 @@
          
         }, 10000000);
         
+         }
     }
      const rps = () => {
        ps = 0;
@@ -138,6 +140,7 @@
         clearInterval(timeref);
         clearInterval(timere);
         clearInterval(timer);
+        timeref = false;
     }
       reset.addEventListener('click', rps );
      sto.addEventListener('click', tim);
