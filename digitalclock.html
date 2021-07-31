@@ -58,93 +58,62 @@
       <div class="box">
           <div class="h1">Press any button ⏲️</div>
         <div class="screen">
-        <div class="hours1" > 00 :</div>
-        <div class="hours2" > 00 :</div>
-        <div class="hours3" > 00 </div>
+        <div class="hours1" > 00 : 00 : 00 </div>
+       
       </div>
      <div class="btncon"> 
-       <button id = "btn1" onclick="click1" class="btn">start</button>
-      <button id = "btn2"  onclick="click2" class="btn">stop</button>
-      <button id = "btn3"  onclick="click3" class="btn">reset</button>
+       <button id = "btn1" onclick="start()" class="btn">start</button>
+      <button id = "btn2"  onclick="stop()" class="btn">stop</button>
+      <button id = "btn3"  onclick="reset()" class="btn">reset</button>
         </div>
     </div></div>
    
     
 </body>
 <script>
-    const min = document.querySelector('.hours1');
-    const sec = document.querySelector('.hours2');
-    const persec = document.querySelector('.hours3');
-    const start = document.querySelector('#btn1');
-    const sto = document.querySelector('#btn2');
-    const reset = document.querySelector('#btn3');
-    const display = document.querySelector('.h1');
-    let m = 0;
-    let s = 0;
-    let ps =0;
-    let timeref ;
-    const time = () => {
-         if (!timeref) {
-          timeref =  setInterval(() => {
-          if (ps <= 99) {
-       document.querySelector('.h1').innerHTML=`Time is  start... 🏃`;
+ let ms = 0, s=0, m=0;
+ let timer;
 
-            persec.innerHTML =`${ps}`;
-            ps++;
-          }
-            else{
-              ps = 0;
-          }
-         
-        }, 100);
-          timere = setInterval(() => {
-          if (s <= 59) {
-            sec.innerHTML =`${s}`;
-            s++;
-          }
-            else{
-              s = 0;
-          }
-         
-        }, 10000);
-          timer = setInterval(() => {
-          if (m <= 59) {
-            min.innerHTML =`${m}`;
-            m++;
-          }
-            else{
-              m = 0;
-          }
-         
-        }, 10000000);
-        
-         }
+ const timeref = document.querySelector('.hours1');
+
+  start = () =>{
+    if (!timer) {
+      document.querySelector('.h1').innerHTML = `  Time is start 🏃   `
+      timer = setInterval(run,100);
+      
+      
     }
-     const rps = () => {
-       ps = 0;
-       s =0;
-       m =0;
-       document.querySelector('.h1').innerHTML=`Press any button... 🧍`;
-
-
-       persec.innerHTML = `${ps}0 ` 
-       sec.innerHTML = `${s}0 :`
-       min.innerHTML = `${m}0 :`
-       clearInterval(timeref);
-        clearInterval(timere);
-        clearInterval(timer);
-     }
-    
-    const tim = () => {
-       document.querySelector('.h1').innerHTML=`Time is stop... 🗽`;
-        clearInterval(timeref);
-        clearInterval(timere);
-        clearInterval(timer);
-        timeref = false;
+  }
+  run = () =>{
+    timeref.textContent = (m< 10 ? "0" + m : m) + ":" + (s<10 ? "0" + s : s ) + ":" + (ms<10 ? "0" + ms : ms)
+    ms++;
+    if (ms == 99) {
+      ms = 0;
+      s++;
+      
     }
-      reset.addEventListener('click', rps );
-     sto.addEventListener('click', tim);
-     start.addEventListener('click',time);
+    if ( s== 59) {
+      s =0;
+      m++;
+      
+    }
+  }
+  stop= ()=>{
+    document.querySelector('.h1').innerHTML = `Time is stop 🧍 `
+    clearInterval(timer);
+    timer = false;
+  }
+  reset = () => {
+    document.querySelector('.h1').innerHTML = `Press any button ⏲️  `
+    clearInterval(timer);
+    timer = false;
+    ms = 0;
+    s=0;
+     m=0;
+    timeref.textContent = (m< 10 ? "0" + m : m) + ":" + (s<10 ? "0" + s : s ) + ":" + (ms<10 ? "0" + ms : ms)
+
+  }
+  
     
     
 </script>
