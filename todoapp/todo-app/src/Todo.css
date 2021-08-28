@@ -1,0 +1,24 @@
+.html {
+  font: 62.5%;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(54, 54, 211);
+}
+.input {
+  outline-width: 0;
+  margin-top: 0.8rem;
+}
+.all-todos {
+  text-align: center;
+}
+.todobutton {
+  cursor: pointer;
+}
