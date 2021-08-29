@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>Digital Clock</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+          font-size: 62.5%;
+        }
+        .page{
+            
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            background: linear-gradient(to bottom right, #3399ff 0%, #99ff99 104%);
+
+        }
+        .box{
+            background: linear-gradient(to bottom right, #3399ff 0%, #99ff99 104%);
+            border: .2rem solid rgb(247, 240, 252);
+            border-radius: .9rem;
+            width: 38vw;
+            height: 34vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-wrap: wrap;
+
+
+        }
+        .screen{
+          display: flex;
+          justify-content: center;
+           align-items: center;
+           background: linear-gradient(to right, #33ccff 0%, #ff99cc 100%);
+           height: 4rem;
+           font-size: 2.4rem;
+           font-family: 'Orbitron', sans-serif;
+        }
+        .btncon{
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          
+        }
+        .btn{
+          border-radius: 20%;
+          padding: .6rem 1rem;
+          font-size: 1.5rem;
+          margin: .3rem;
+          
+          
+        }
+        .sport-watch{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .h1{
+          font-size: 3.2rem;
+          background-color: #08f7f3;
+          display: flex;
+          justify-content: center;
+
+        }
+        .titel{
+          background: linear-gradient(to right, #33ccff 0%, #ff99cc 100%);
+
+          font-size: 4.5rem;
+          text-transform: capitalize;
+          border: .2rem solid white;
+          margin-bottom: 4rem;
+          flex-wrap: wrap;
+        }
+        
+        
+
+    </style>
+</head>
+<body>
+    <div class="page"> 
+      <div class="sport-watch">
+        <h1 class="titel">sports wacth</h1>
+      </div>
+      <div class="box">
+          <div class="h1">Press any button ⏲️</div>
+        <div class="screen">
+        <div class="hours1" > 00 : 00 : 00 </div>
+       
+      </div>
+     <div class="btncon"> 
+       <button id = "btn1" onclick="start()" class="btn">start</button>
+      <button id = "btn2"  onclick="stop()" class="btn">stop</button>
+      <button id = "btn3"  onclick="reset()" class="btn">reset</button>
+        </div>
+    </div></div>
+   
+    
+</body>
+<script>
+ let ms = 0, s=0, m=0;
+ let timer;
+
+ const timeref = document.querySelector('.hours1');
+
+  start = () =>{
+    if (!timer) {
+      document.querySelector('.h1').innerHTML = `  Time is start 🏃   `
+      timer = setInterval(run,100);
+      
+      
+    }
+  }
+  run = () =>{
+    timeref.textContent = (m< 10 ? "0" + m : m) + ":" + (s<10 ? "0" + s : s ) + ":" + (ms<10 ? "0" + ms : ms)
+    ms++;
+    if (ms == 99) {
+      ms = 0;
+      s++;
+      
+    }
+    if ( s== 59) {
+      s =0;
+      m++;
+      
+    }
+  }
+  stop= ()=>{
+    document.querySelector('.h1').innerHTML = `Time is stop 🧍 `
+    clearInterval(timer);
+    timer = false;
+  }
+  reset = () => {
+    document.querySelector('.h1').innerHTML = `Press any button ⏲️  `
+    clearInterval(timer);
+    timer = false;
+    ms = 0;
+    s=0;
+     m=0;
+    timeref.textContent = (m< 10 ? "0" + m : m) + ":" + (s<10 ? "0" + s : s ) + ":" + (ms<10 ? "0" + ms : ms)
+
+  }
+  
+    
+    
+</script>
+</html>
